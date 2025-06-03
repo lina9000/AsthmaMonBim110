@@ -1,0 +1,90 @@
+{
+  "indexes": [
+    {
+      "collectionGroup": "dailysymptems",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "UID",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "TestResultDate",
+          "order": "DESCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "dailysymptems",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "UID",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "ACTDate",
+          "order": "DESCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "Medication",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "IsMedication",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "WhenWasThisTaken",
+          "order": "ASCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "dailysymptems",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "UID",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "ACTscore",
+          "order": "ASCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "Medication",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "IsMedication",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "UserId",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "DateOfMedictation",
+          "arrayConfig": "CONTAINS"
+        }
+      ]
+    }
+  ],
+  "fieldOverrides": [
+    {
+      "collectionGroup": "fcm_tokens",
+      "fieldPath": "fcm_token",
+      "indexes": [
+        {
+          "order": "ASCENDING",
+          "queryScope": "COLLECTION_GROUP"
+        }
+      ]
+    }
+  ]
+}

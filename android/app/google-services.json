@@ -1,0 +1,54 @@
+{
+  "project_info": {
+    "project_number": "752508870773",
+    "project_id": "asthma-montemplate-o84nw2",
+    "storage_bucket": "asthma-montemplate-o84nw2.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:752508870773:android:1ec02746000947d081183c",
+        "android_client_info": {
+          "package_name": "com.mycompany.asthmamontemplate"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "752508870773-epaf8nl2npirmiuicdbghs1j3mgngn49.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.mycompany.asthmamontemplate",
+            "certificate_hash": "9bbb3186b2189ef16d8f272bdab59362c395cbb4"
+          }
+        },
+        {
+          "client_id": "752508870773-bl0ap38mfqovcudbgderbmhkmf40u8ul.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDvyXYzmaPrY_3zaoG963EHqInyx-TUNo4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "752508870773-bl0ap38mfqovcudbgderbmhkmf40u8ul.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "752508870773-fphampp3lfsdpcdsufsqflghnkn30ue2.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.mycompany.asthmamontemplate"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

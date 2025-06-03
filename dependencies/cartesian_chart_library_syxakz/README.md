@@ -1,4 +1,4 @@
-# AsthmaMon template
+# cartesian-chart-library
 
 A new Flutter project.
 
