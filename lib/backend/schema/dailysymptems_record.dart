@@ -71,6 +71,21 @@ class DailysymptemsRecord extends FirestoreRecord {
   DateTime? get testResultDate => _testResultDate;
   bool hasTestResultDate() => _testResultDate != null;
 
+  // "FVCdoub" field.
+  double? _fVCdoub;
+  double get fVCdoub => _fVCdoub ?? 0.0;
+  bool hasFVCdoub() => _fVCdoub != null;
+
+  // "FEV1DOUb" field.
+  double? _fEV1DOUb;
+  double get fEV1DOUb => _fEV1DOUb ?? 0.0;
+  bool hasFEV1DOUb() => _fEV1DOUb != null;
+
+  // "RationBoub" field.
+  double? _rationBoub;
+  double get rationBoub => _rationBoub ?? 0.0;
+  bool hasRationBoub() => _rationBoub != null;
+
   void _initializeFields() {
     _uid = snapshotData['UID'] as String?;
     _dateofsyptem = snapshotData['dateofsyptem'] as DateTime?;
@@ -83,6 +98,9 @@ class DailysymptemsRecord extends FirestoreRecord {
     _pef = castToType<int>(snapshotData['PEF']);
     _ratio = castToType<int>(snapshotData['Ratio']);
     _testResultDate = snapshotData['TestResultDate'] as DateTime?;
+    _fVCdoub = castToType<double>(snapshotData['FVCdoub']);
+    _fEV1DOUb = castToType<double>(snapshotData['FEV1DOUb']);
+    _rationBoub = castToType<double>(snapshotData['RationBoub']);
   }
 
   static CollectionReference get collection =>
@@ -130,6 +148,9 @@ Map<String, dynamic> createDailysymptemsRecordData({
   int? pef,
   int? ratio,
   DateTime? testResultDate,
+  double? fVCdoub,
+  double? fEV1DOUb,
+  double? rationBoub,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
@@ -143,6 +164,9 @@ Map<String, dynamic> createDailysymptemsRecordData({
       'PEF': pef,
       'Ratio': ratio,
       'TestResultDate': testResultDate,
+      'FVCdoub': fVCdoub,
+      'FEV1DOUb': fEV1DOUb,
+      'RationBoub': rationBoub,
     }.withoutNulls,
   );
 
@@ -166,7 +190,10 @@ class DailysymptemsRecordDocumentEquality
         e1?.fev1 == e2?.fev1 &&
         e1?.pef == e2?.pef &&
         e1?.ratio == e2?.ratio &&
-        e1?.testResultDate == e2?.testResultDate;
+        e1?.testResultDate == e2?.testResultDate &&
+        e1?.fVCdoub == e2?.fVCdoub &&
+        e1?.fEV1DOUb == e2?.fEV1DOUb &&
+        e1?.rationBoub == e2?.rationBoub;
   }
 
   @override
@@ -181,7 +208,10 @@ class DailysymptemsRecordDocumentEquality
         e?.fev1,
         e?.pef,
         e?.ratio,
-        e?.testResultDate
+        e?.testResultDate,
+        e?.fVCdoub,
+        e?.fEV1DOUb,
+        e?.rationBoub
       ]);
 
   @override

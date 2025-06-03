@@ -199,18 +199,32 @@ class _HomeWidgetState extends State<HomeWidget> {
                                 mainAxisAlignment: MainAxisAlignment.start,
                                 children: [
                                   Expanded(
-                                    child: Column(
-                                      mainAxisSize: MainAxisSize.max,
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        Text(
-                                          'FVC',
-                                          style: FlutterFlowTheme.of(context)
-                                              .bodyMedium
-                                              .override(
-                                                font:
-                                                    GoogleFonts.plusJakartaSans(
+                                    child: Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          0.0, 10.0, 0.0, 0.0),
+                                      child: Column(
+                                        mainAxisSize: MainAxisSize.max,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          Text(
+                                            'FVC',
+                                            style: FlutterFlowTheme.of(context)
+                                                .bodyMedium
+                                                .override(
+                                                  font: GoogleFonts
+                                                      .plusJakartaSans(
+                                                    fontWeight:
+                                                        FontWeight.normal,
+                                                    fontStyle:
+                                                        FlutterFlowTheme.of(
+                                                                context)
+                                                            .bodyMedium
+                                                            .fontStyle,
+                                                  ),
+                                                  color: Color(0xFF14181B),
+                                                  fontSize: 14.0,
+                                                  letterSpacing: 0.0,
                                                   fontWeight: FontWeight.normal,
                                                   fontStyle:
                                                       FlutterFlowTheme.of(
@@ -218,91 +232,102 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                           .bodyMedium
                                                           .fontStyle,
                                                 ),
-                                                color: Color(0xFF14181B),
-                                                fontSize: 14.0,
-                                                letterSpacing: 0.0,
-                                                fontWeight: FontWeight.normal,
-                                                fontStyle:
-                                                    FlutterFlowTheme.of(context)
-                                                        .bodyMedium
-                                                        .fontStyle,
-                                              ),
-                                        ),
-                                        Padding(
-                                          padding:
-                                              EdgeInsetsDirectional.fromSTEB(
-                                                  0.0, 0.0, 0.0, 10.0),
-                                          child: StreamBuilder<
-                                              List<DailysymptemsRecord>>(
-                                            stream: queryDailysymptemsRecord(
-                                              queryBuilder:
-                                                  (dailysymptemsRecord) =>
-                                                      dailysymptemsRecord
-                                                          .where(
-                                                            'UID',
-                                                            isEqualTo:
-                                                                currentUserReference
-                                                                    ?.id,
-                                                          )
-                                                          .where(
-                                                            'TestResultDate',
-                                                            isLessThan:
-                                                                getCurrentTimestamp,
-                                                          )
-                                                          .orderBy(
+                                          ),
+                                          Padding(
+                                            padding:
+                                                EdgeInsetsDirectional.fromSTEB(
+                                                    0.0, 0.0, 0.0, 10.0),
+                                            child: StreamBuilder<
+                                                List<DailysymptemsRecord>>(
+                                              stream: queryDailysymptemsRecord(
+                                                queryBuilder:
+                                                    (dailysymptemsRecord) =>
+                                                        dailysymptemsRecord
+                                                            .where(
+                                                              'UID',
+                                                              isEqualTo:
+                                                                  currentUserReference
+                                                                      ?.id,
+                                                            )
+                                                            .where(
                                                               'TestResultDate',
-                                                              descending: true),
-                                              limit: 1,
-                                            ),
-                                            builder: (context, snapshot) {
-                                              // Customize what your widget looks like when it's loading.
-                                              if (!snapshot.hasData) {
-                                                return Center(
-                                                  child: SizedBox(
-                                                    width: 50.0,
-                                                    height: 50.0,
-                                                    child:
-                                                        CircularProgressIndicator(
-                                                      valueColor:
-                                                          AlwaysStoppedAnimation<
-                                                              Color>(
-                                                        FlutterFlowTheme.of(
-                                                                context)
-                                                            .primary,
+                                                              isLessThan:
+                                                                  getCurrentTimestamp,
+                                                            )
+                                                            .orderBy(
+                                                                'TestResultDate',
+                                                                descending:
+                                                                    true),
+                                                limit: 1,
+                                              ),
+                                              builder: (context, snapshot) {
+                                                // Customize what your widget looks like when it's loading.
+                                                if (!snapshot.hasData) {
+                                                  return Center(
+                                                    child: SizedBox(
+                                                      width: 50.0,
+                                                      height: 50.0,
+                                                      child:
+                                                          CircularProgressIndicator(
+                                                        valueColor:
+                                                            AlwaysStoppedAnimation<
+                                                                Color>(
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .primary,
+                                                        ),
                                                       ),
                                                     ),
-                                                  ),
-                                                );
-                                              }
-                                              List<DailysymptemsRecord>
-                                                  listViewDailysymptemsRecordList =
-                                                  snapshot.data!;
+                                                  );
+                                                }
+                                                List<DailysymptemsRecord>
+                                                    listViewDailysymptemsRecordList =
+                                                    snapshot.data!;
 
-                                              return ListView.builder(
-                                                padding: EdgeInsets.zero,
-                                                shrinkWrap: true,
-                                                scrollDirection: Axis.vertical,
-                                                itemCount:
-                                                    listViewDailysymptemsRecordList
-                                                        .length,
-                                                itemBuilder:
-                                                    (context, listViewIndex) {
-                                                  final listViewDailysymptemsRecord =
-                                                      listViewDailysymptemsRecordList[
-                                                          listViewIndex];
-                                                  return Text(
-                                                    valueOrDefault<String>(
-                                                      listViewDailysymptemsRecord
-                                                          .fvc
-                                                          .toString(),
-                                                      '1',
-                                                    ),
-                                                    style: FlutterFlowTheme.of(
-                                                            context)
-                                                        .displaySmall
-                                                        .override(
-                                                          font: GoogleFonts
-                                                              .outfit(
+                                                return ListView.builder(
+                                                  padding: EdgeInsets.zero,
+                                                  shrinkWrap: true,
+                                                  scrollDirection:
+                                                      Axis.vertical,
+                                                  itemCount:
+                                                      listViewDailysymptemsRecordList
+                                                          .length,
+                                                  itemBuilder:
+                                                      (context, listViewIndex) {
+                                                    final listViewDailysymptemsRecord =
+                                                        listViewDailysymptemsRecordList[
+                                                            listViewIndex];
+                                                    return Text(
+                                                      valueOrDefault<String>(
+                                                        functions
+                                                            .devideby100(
+                                                                valueOrDefault<
+                                                                    int>(
+                                                              listViewDailysymptemsRecord
+                                                                  .fvc,
+                                                              1,
+                                                            ))
+                                                            .toString(),
+                                                        '1',
+                                                      ),
+                                                      style: FlutterFlowTheme
+                                                              .of(context)
+                                                          .displaySmall
+                                                          .override(
+                                                            font: GoogleFonts
+                                                                .outfit(
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .w300,
+                                                              fontStyle: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .displaySmall
+                                                                  .fontStyle,
+                                                            ),
+                                                            color: Color(
+                                                                0xFF14181B),
+                                                            fontSize: 36.0,
+                                                            letterSpacing: 0.0,
                                                             fontWeight:
                                                                 FontWeight.w300,
                                                             fontStyle:
@@ -311,129 +336,150 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                                     .displaySmall
                                                                     .fontStyle,
                                                           ),
-                                                          color:
-                                                              Color(0xFF14181B),
-                                                          fontSize: 36.0,
-                                                          letterSpacing: 0.0,
-                                                          fontWeight:
-                                                              FontWeight.w300,
-                                                          fontStyle:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .displaySmall
-                                                                  .fontStyle,
-                                                        ),
-                                                  );
-                                                },
-                                              );
-                                            },
+                                                    );
+                                                  },
+                                                );
+                                              },
+                                            ),
                                           ),
-                                        ),
-                                      ],
+                                        ],
+                                      ),
                                     ),
                                   ),
                                   Expanded(
-                                    child: Column(
-                                      mainAxisSize: MainAxisSize.max,
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        Text(
-                                          'FEV1',
-                                          style: FlutterFlowTheme.of(context)
-                                              .bodyMedium
-                                              .override(
-                                                font:
-                                                    GoogleFonts.plusJakartaSans(
-                                                  fontWeight: FontWeight.normal,
-                                                  fontStyle:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .bodyMedium
-                                                          .fontStyle,
-                                                ),
-                                                color: Color(0xFF14181B),
-                                                fontSize: 14.0,
-                                                letterSpacing: 0.0,
-                                                fontWeight: FontWeight.normal,
-                                                fontStyle:
-                                                    FlutterFlowTheme.of(context)
-                                                        .bodyMedium
-                                                        .fontStyle,
-                                              ),
-                                        ),
-                                        Padding(
-                                          padding:
-                                              EdgeInsetsDirectional.fromSTEB(
-                                                  0.0, 0.0, 10.0, 10.0),
-                                          child: StreamBuilder<
-                                              List<DailysymptemsRecord>>(
-                                            stream: queryDailysymptemsRecord(
-                                              queryBuilder:
-                                                  (dailysymptemsRecord) =>
-                                                      dailysymptemsRecord
-                                                          .where(
-                                                            'UID',
-                                                            isEqualTo:
-                                                                currentUserReference
-                                                                    ?.id,
-                                                          )
-                                                          .where(
-                                                            'TestResultDate',
-                                                            isLessThan:
-                                                                getCurrentTimestamp,
-                                                          )
-                                                          .orderBy(
-                                                              'TestResultDate',
-                                                              descending: true),
-                                              limit: 1,
+                                    child: Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          0.0, 5.0, 0.0, 0.0),
+                                      child: Column(
+                                        mainAxisSize: MainAxisSize.max,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          Padding(
+                                            padding:
+                                                EdgeInsetsDirectional.fromSTEB(
+                                                    0.0, 7.0, 0.0, 0.0),
+                                            child: Text(
+                                              'FEV1',
+                                              style:
+                                                  FlutterFlowTheme.of(context)
+                                                      .bodyMedium
+                                                      .override(
+                                                        font: GoogleFonts
+                                                            .plusJakartaSans(
+                                                          fontWeight:
+                                                              FontWeight.normal,
+                                                          fontStyle:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .bodyMedium
+                                                                  .fontStyle,
+                                                        ),
+                                                        color:
+                                                            Color(0xFF14181B),
+                                                        fontSize: 14.0,
+                                                        letterSpacing: 0.0,
+                                                        fontWeight:
+                                                            FontWeight.normal,
+                                                        fontStyle:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .bodyMedium
+                                                                .fontStyle,
+                                                      ),
                                             ),
-                                            builder: (context, snapshot) {
-                                              // Customize what your widget looks like when it's loading.
-                                              if (!snapshot.hasData) {
-                                                return Center(
-                                                  child: SizedBox(
-                                                    width: 50.0,
-                                                    height: 50.0,
-                                                    child:
-                                                        CircularProgressIndicator(
-                                                      valueColor:
-                                                          AlwaysStoppedAnimation<
-                                                              Color>(
-                                                        FlutterFlowTheme.of(
-                                                                context)
-                                                            .primary,
+                                          ),
+                                          Padding(
+                                            padding:
+                                                EdgeInsetsDirectional.fromSTEB(
+                                                    0.0, 0.0, 10.0, 10.0),
+                                            child: StreamBuilder<
+                                                List<DailysymptemsRecord>>(
+                                              stream: queryDailysymptemsRecord(
+                                                queryBuilder:
+                                                    (dailysymptemsRecord) =>
+                                                        dailysymptemsRecord
+                                                            .where(
+                                                              'UID',
+                                                              isEqualTo:
+                                                                  currentUserReference
+                                                                      ?.id,
+                                                            )
+                                                            .where(
+                                                              'TestResultDate',
+                                                              isLessThan:
+                                                                  getCurrentTimestamp,
+                                                            )
+                                                            .orderBy(
+                                                                'TestResultDate',
+                                                                descending:
+                                                                    true),
+                                                limit: 1,
+                                              ),
+                                              builder: (context, snapshot) {
+                                                // Customize what your widget looks like when it's loading.
+                                                if (!snapshot.hasData) {
+                                                  return Center(
+                                                    child: SizedBox(
+                                                      width: 50.0,
+                                                      height: 50.0,
+                                                      child:
+                                                          CircularProgressIndicator(
+                                                        valueColor:
+                                                            AlwaysStoppedAnimation<
+                                                                Color>(
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .primary,
+                                                        ),
                                                       ),
                                                     ),
-                                                  ),
-                                                );
-                                              }
-                                              List<DailysymptemsRecord>
-                                                  listViewDailysymptemsRecordList =
-                                                  snapshot.data!;
+                                                  );
+                                                }
+                                                List<DailysymptemsRecord>
+                                                    listViewDailysymptemsRecordList =
+                                                    snapshot.data!;
 
-                                              return ListView.builder(
-                                                padding: EdgeInsets.zero,
-                                                shrinkWrap: true,
-                                                scrollDirection: Axis.vertical,
-                                                itemCount:
-                                                    listViewDailysymptemsRecordList
-                                                        .length,
-                                                itemBuilder:
-                                                    (context, listViewIndex) {
-                                                  final listViewDailysymptemsRecord =
-                                                      listViewDailysymptemsRecordList[
-                                                          listViewIndex];
-                                                  return Text(
-                                                    listViewDailysymptemsRecord
-                                                        .fev1
-                                                        .toString(),
-                                                    style: FlutterFlowTheme.of(
-                                                            context)
-                                                        .displaySmall
-                                                        .override(
-                                                          font: GoogleFonts
-                                                              .outfit(
+                                                return ListView.builder(
+                                                  padding: EdgeInsets.zero,
+                                                  shrinkWrap: true,
+                                                  scrollDirection:
+                                                      Axis.vertical,
+                                                  itemCount:
+                                                      listViewDailysymptemsRecordList
+                                                          .length,
+                                                  itemBuilder:
+                                                      (context, listViewIndex) {
+                                                    final listViewDailysymptemsRecord =
+                                                        listViewDailysymptemsRecordList[
+                                                            listViewIndex];
+                                                    return Text(
+                                                      valueOrDefault<String>(
+                                                        functions
+                                                            .devideby100(
+                                                                listViewDailysymptemsRecord
+                                                                    .fev1)
+                                                            .toString(),
+                                                        '2',
+                                                      ),
+                                                      style: FlutterFlowTheme
+                                                              .of(context)
+                                                          .displaySmall
+                                                          .override(
+                                                            font: GoogleFonts
+                                                                .outfit(
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .w300,
+                                                              fontStyle: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .displaySmall
+                                                                  .fontStyle,
+                                                            ),
+                                                            color: Color(
+                                                                0xFF14181B),
+                                                            fontSize: 36.0,
+                                                            letterSpacing: 0.0,
                                                             fontWeight:
                                                                 FontWeight.w300,
                                                             fontStyle:
@@ -442,25 +488,14 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                                     .displaySmall
                                                                     .fontStyle,
                                                           ),
-                                                          color:
-                                                              Color(0xFF14181B),
-                                                          fontSize: 36.0,
-                                                          letterSpacing: 0.0,
-                                                          fontWeight:
-                                                              FontWeight.w300,
-                                                          fontStyle:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .displaySmall
-                                                                  .fontStyle,
-                                                        ),
-                                                  );
-                                                },
-                                              );
-                                            },
+                                                    );
+                                                  },
+                                                );
+                                              },
+                                            ),
                                           ),
-                                        ),
-                                      ],
+                                        ],
+                                      ),
                                     ),
                                   ),
                                   Expanded(
@@ -552,9 +587,143 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                     listViewDailysymptemsRecordList[
                                                         listViewIndex];
                                                 return Text(
-                                                  listViewDailysymptemsRecord
-                                                      .pef
-                                                      .toString(),
+                                                  valueOrDefault<String>(
+                                                    functions
+                                                        .devideby100(
+                                                            listViewDailysymptemsRecord
+                                                                .ratio)
+                                                        .toString(),
+                                                    '3',
+                                                  ),
+                                                  style: FlutterFlowTheme.of(
+                                                          context)
+                                                      .displaySmall
+                                                      .override(
+                                                        font:
+                                                            GoogleFonts.outfit(
+                                                          fontWeight:
+                                                              FontWeight.w300,
+                                                          fontStyle:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .displaySmall
+                                                                  .fontStyle,
+                                                        ),
+                                                        color:
+                                                            Color(0xFF14181B),
+                                                        fontSize: 36.0,
+                                                        letterSpacing: 0.0,
+                                                        fontWeight:
+                                                            FontWeight.w300,
+                                                        fontStyle:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .displaySmall
+                                                                .fontStyle,
+                                                      ),
+                                                );
+                                              },
+                                            );
+                                          },
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                  Expanded(
+                                    child: Column(
+                                      mainAxisSize: MainAxisSize.max,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Text(
+                                          'PEF',
+                                          style: FlutterFlowTheme.of(context)
+                                              .bodyMedium
+                                              .override(
+                                                font:
+                                                    GoogleFonts.plusJakartaSans(
+                                                  fontWeight: FontWeight.normal,
+                                                  fontStyle:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .bodyMedium
+                                                          .fontStyle,
+                                                ),
+                                                color: Color(0xFF14181B),
+                                                fontSize: 14.0,
+                                                letterSpacing: 0.0,
+                                                fontWeight: FontWeight.normal,
+                                                fontStyle:
+                                                    FlutterFlowTheme.of(context)
+                                                        .bodyMedium
+                                                        .fontStyle,
+                                              ),
+                                        ),
+                                        StreamBuilder<
+                                            List<DailysymptemsRecord>>(
+                                          stream: queryDailysymptemsRecord(
+                                            queryBuilder:
+                                                (dailysymptemsRecord) =>
+                                                    dailysymptemsRecord
+                                                        .where(
+                                                          'UID',
+                                                          isEqualTo:
+                                                              currentUserReference
+                                                                  ?.id,
+                                                        )
+                                                        .where(
+                                                          'TestResultDate',
+                                                          isLessThan:
+                                                              getCurrentTimestamp,
+                                                        )
+                                                        .orderBy(
+                                                            'TestResultDate',
+                                                            descending: true),
+                                            limit: 1,
+                                          ),
+                                          builder: (context, snapshot) {
+                                            // Customize what your widget looks like when it's loading.
+                                            if (!snapshot.hasData) {
+                                              return Center(
+                                                child: SizedBox(
+                                                  width: 50.0,
+                                                  height: 50.0,
+                                                  child:
+                                                      CircularProgressIndicator(
+                                                    valueColor:
+                                                        AlwaysStoppedAnimation<
+                                                            Color>(
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .primary,
+                                                    ),
+                                                  ),
+                                                ),
+                                              );
+                                            }
+                                            List<DailysymptemsRecord>
+                                                listViewDailysymptemsRecordList =
+                                                snapshot.data!;
+
+                                            return ListView.builder(
+                                              padding: EdgeInsets.zero,
+                                              shrinkWrap: true,
+                                              scrollDirection: Axis.vertical,
+                                              itemCount:
+                                                  listViewDailysymptemsRecordList
+                                                      .length,
+                                              itemBuilder:
+                                                  (context, listViewIndex) {
+                                                final listViewDailysymptemsRecord =
+                                                    listViewDailysymptemsRecordList[
+                                                        listViewIndex];
+                                                return Text(
+                                                  valueOrDefault<String>(
+                                                    listViewDailysymptemsRecord
+                                                        .pef
+                                                        .toString(),
+                                                    '4',
+                                                  ),
                                                   style: FlutterFlowTheme.of(
                                                           context)
                                                       .displaySmall

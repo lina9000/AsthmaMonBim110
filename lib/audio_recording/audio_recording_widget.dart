@@ -61,20 +61,20 @@ class _AudioRecordingWidgetState extends State<AudioRecordingWidget> {
         key: scaffoldKey,
         backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
         appBar: AppBar(
-          backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
+          backgroundColor: FlutterFlowTheme.of(context).secondary,
           automaticallyImplyLeading: false,
           leading: FlutterFlowIconButton(
             borderColor: Colors.transparent,
-            borderRadius: 12.0,
-            buttonSize: 40.0,
-            fillColor: Colors.transparent,
+            borderRadius: 30.0,
+            borderWidth: 1.0,
+            buttonSize: 60.0,
             icon: Icon(
               Icons.arrow_back_rounded,
-              color: FlutterFlowTheme.of(context).primaryText,
-              size: 24.0,
+              color: Colors.white,
+              size: 30.0,
             ),
             onPressed: () async {
-              context.pushNamed(HomeWidget.routeName);
+              context.pop();
             },
           ),
           title: Text(
@@ -86,6 +86,7 @@ class _AudioRecordingWidgetState extends State<AudioRecordingWidget> {
                     fontStyle:
                         FlutterFlowTheme.of(context).headlineMedium.fontStyle,
                   ),
+                  color: FlutterFlowTheme.of(context).primaryBackground,
                   letterSpacing: 0.0,
                   fontWeight:
                       FlutterFlowTheme.of(context).headlineMedium.fontWeight,
@@ -94,8 +95,8 @@ class _AudioRecordingWidgetState extends State<AudioRecordingWidget> {
                 ),
           ),
           actions: [],
-          centerTitle: false,
-          elevation: 0.0,
+          centerTitle: true,
+          elevation: 2.0,
         ),
         body: Padding(
           padding: EdgeInsetsDirectional.fromSTEB(24.0, 24.0, 24.0, 24.0),
@@ -278,7 +279,7 @@ class _AudioRecordingWidgetState extends State<AudioRecordingWidget> {
                                                           (alertDialogContext) {
                                                         return AlertDialog(
                                                           title: Text(
-                                                              'Before recording'),
+                                                              'Before Recording'),
                                                           content: Text(
                                                               'Make sure microphone setting are allowed'),
                                                           actions: [
@@ -657,6 +658,13 @@ class _AudioRecordingWidgetState extends State<AudioRecordingWidget> {
                                                               ''),
                                                           r'''$.FVC''',
                                                         ))!;
+                                                        FFAppState().Ratiodoub =
+                                                            getJsonField(
+                                                          (_model.apiResult
+                                                                  ?.jsonBody ??
+                                                              ''),
+                                                          r'''$.Ratio''',
+                                                        );
                                                         safeSetState(() {});
 
                                                         await DailysymptemsRecord
